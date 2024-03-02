@@ -3,7 +3,7 @@ add = (number1, number2) => {
         number1,
         addition: "+",
         number2,
-        result: `the answer of ${number1} + ${number2} is ${number1 + number2}`,
+        result: number1 + number2,
     }
     return addObj['result'] 
 }
@@ -50,15 +50,75 @@ operate = (operator, number1, number2) => {
 console.log(divide(5,5));
 
 
-populate = () => {
-    const number = document.querySelectorAll('.numbers, .dot');
-    number.forEach(button =>{
-        button.addEventListener('click', () =>{
-            const resultBox = document.querySelector('#result')
-            const displayValue = document.createElement('p');
-            displayValue.textContent = button.textContent
-            resultBox.appendChild(displayValue)
-            console.log(displayValue);
-        })
-    })}
-populate()
+let clickedButtons = ''; 
+const resultBox = document.querySelector('#result'); // Select result box outside the loop
+
+calculate = () => {
+    //Top buttons functions
+    const numbers = document.querySelectorAll('.numbers, .dot');
+    const acButton = document.querySelector('.ac');
+    acButton.addEventListener('click', () => {
+        clickedButtons = '';
+        resultBox.textContent = clickedButtons;
+        console.log(clickedButtons);
+    });
+    
+    const postiveSlashNegativeButton = document.querySelector('.top-calc:nth-child(2)');
+    postiveSlashNegativeButton.addEventListener('click', () =>{
+        clickedButtons = Number(clickedButtons) *-1
+        console.log(clickedButtons);
+        resultBox.textContent = clickedButtons
+    })
+    
+    const percentButton = document.querySelector('.top-calc:nth-child(3');
+    percentButton.addEventListener('click', () =>{
+        clickedButtons= Number(clickedButtons)/100;
+        resultBox.textContent = clickedButtons
+    })
+    //end of top buttons functions
+    //Numbers display function
+    numbers.forEach(button => {
+        button.addEventListener('click', () => {
+            const buttonText = button.textContent;
+            clickedButtons += buttonText; // Append the clicked button text to the variable
+            resultBox.textContent = Number(clickedButtons); // Set the text content of result box
+            console.log(clickedButtons); // Log the clicked buttons string
+        });
+    });
+    //End Numbers display function
+
+    const equalsButton = document.querySelector('.eq');
+    equalsButton.addEventListener('click', () => {
+        // const result = add(num1, num2);
+        // // clickedButtons = '';
+        // resultBox.textContent=(result)
+        console.log('l');
+    })
+}
+
+
+calculate()
+
+    
+
+
+//     const addButton = document.querySelector('.add');
+//     addButton.addEventListener('click', () => {
+//         num1= Number(clickedButtons);
+//         clickedButtons = ''
+//         // const buttonText = button.textContent;
+//         // clickedButtons += buttonText; // Append the clicked button text to the variable
+//         num2 = Number(clickedButtons)
+      
+//     });
+//     const equalsButton = document.querySelector('.eq');
+//     equalsButton.addEventListener('click', () => {
+//         // const result = add(num1, num2);
+//         // // clickedButtons = '';
+//         // resultBox.textContent=(result)
+//         console.log();
+//     })
+// }
+
+
+    
