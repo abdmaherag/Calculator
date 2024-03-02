@@ -44,3 +44,7 @@ divide = (number1, number2) =>{
 }
 console.log(divide(3, 3));
 
+operate = (operator, number1, number2) => {
+    operator(number1,number2)
+}
+console.log(divide(5,5));
