@@ -48,3 +48,19 @@ operate = (operator, number1, number2) => {
     operator(number1,number2)
 }
 console.log(divide(5,5));
+
+
+populate = () => {
+    const number = document.querySelectorAll('.numbers');
+
+    number.forEach(button =>{
+        button.addEventListener('click', () =>{
+            const resultBox = document.querySelector('#result')
+            const displayValue = document.createElement('p');
+            displayValue.textContent = button.textContent
+            resultBox.appendChild(displayValue)
+            console.log(displayValue);
+        })
+    })
+}
+populate()
