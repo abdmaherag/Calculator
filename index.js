@@ -51,8 +51,7 @@ console.log(divide(5,5));
 
 
 populate = () => {
-    const number = document.querySelectorAll('.numbers');
-
+    const number = document.querySelectorAll('.numbers, .dot');
     number.forEach(button =>{
         button.addEventListener('click', () =>{
             const resultBox = document.querySelector('#result')
@@ -61,6 +60,5 @@ populate = () => {
             resultBox.appendChild(displayValue)
             console.log(displayValue);
         })
-    })
-}
+    })}
 populate()
