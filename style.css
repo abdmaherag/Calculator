@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#container{
+    border: 8px solid rgb(71, 71, 71);
+    width: 350px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+.numbers,
+.top-calc
+{
+    display: flex;
+    flex-grow: 2;
+    justify-content: center;
+    align-items: center;
+}
+.numbers{
+    border-color: rgb(32, 169, 203);
+    background-color: rgb(32, 169, 203);
+}
+.dot{
+    border-color: rgb(32, 169, 203);
+    background-color: rgb(32, 169, 203);
+}
+.numbers:hover
+,.dot:hover{
+    background-color: rgb(37, 117, 137);
+    border-color: rgb(37, 117, 137);
+    transition: 0.2s;
+}
+.top-calc{
+    padding: 18px;
+    border-color: rgb(26, 118, 238);
+    border-radius: 8px ;
+    background-color: rgb(26, 118, 238);
+    margin-bottom:3px ;
+}
+.top-calc:hover{
+    background-color: rgb(20, 88, 177);
+    border-color: rgb(20, 88, 177);
+    transition: 0.2s;
+}
+.operation{
+    padding: 18px;
+    border-color: rgb(203, 109, 32);
+    border-radius: 8px ;
+    background-color: rgb(203, 109, 32);
+    margin-bottom:3px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.operation:hover {
+    background-color: rgb(155, 81, 22);
+    border-color: rgb(155, 81, 22);
+    transition: 0.2s;
+} 
+#buttons{
+    display: flex;
+    flex-wrap: wrap;
+}
+#buttons button{
+    border-radius: 6px;
+    margin-left: 2px;
+    padding: 18px;
+    width: 80px;
+    height: 70PX;
+}
+
+ #result{
+    height: 60px; 
+    background-color: grey;
+    border: 5px solid black;
+    color: black;
+ }
