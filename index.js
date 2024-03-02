@@ -15,7 +15,7 @@ substract = (number1, number2) => {
         number1,
         substraction : "-",
         number2,
-        result: `the answer of ${number1} - ${number2} is ${ number1 - number2}`
+        result: number1 - number2
     }
     return substractObj['result']
 }
@@ -26,7 +26,7 @@ multiply = (number1, number2) => {
         number1,
         multiplication: "x",
         number2,
-        result: `the answer of ${number1} x ${number2} is ${ number1 * number2}`
+        result: number1 * number2
     }
     return multiplyObj['result']
 }
@@ -38,7 +38,7 @@ divide = (number1, number2) =>{
         number1,
         division: "÷",
         number2,
-        result:`the answer of ${number1} ÷ ${number2} is ${ number1 / number2}`
+        result: number1 / number2
     }
     return divideObj['result']
 }
@@ -87,4 +87,58 @@ calculate = () => {
         });
     });
     //End Numbers display function
-}  
+    let adds = false;
+    let subs = false;
+    let mults = false;
+    let divs = false;
+
+    const addButton = document.querySelector('.add');
+    addButton.addEventListener('click', () => {
+    adds = true;
+    num1 = Number(clickedButtons);
+        clickedButtons = '';
+    });
+
+    const substractButton = document.querySelector('.substract')
+    substractButton.addEventListener('click', () => {
+    subs = true;
+    num1 = Number(clickedButtons);
+    clickedButtons = '';
+    });
+
+    const multiplyButton = document.querySelector('.mult')
+    multiplyButton.addEventListener('click', () => {
+    mults = true;
+    num1 = Number(clickedButtons);
+    clickedButtons = '';
+    });
+    
+    const divideButton = document.querySelector ('.divs')
+    divideButton.addEventListener('click', () =>{
+        divs = true;
+        num1 = Number(clickedButtons);
+        clickedButtons = '';
+    })
+
+    const equalsButton = document.querySelector('.eq');
+    equalsButton.addEventListener('click', () => {
+        const num2 = Number(clickedButtons);
+        if (adds) {
+            resultBox.textContent = add(num1, num2);
+        } else if (subs) {
+            resultBox.textContent = substract(num1, num2);
+        }
+        else if (mults){
+            resultBox.textContent = multiply(num1, num2)
+        }
+        else if (divs){
+            resultBox.textContent = divide(num1, num2)
+        }
+        // Reset adds and subs after calculation
+        adds = false;
+        subs = false;
+        mults = false;
+        divs = false;
+    });
+}
+calculate()
