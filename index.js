@@ -76,4 +76,15 @@ calculate = () => {
         resultBox.textContent = clickedButtons
     })
     //end of top buttons functions
-} 
+    
+    //Numbers display function
+    numbers.forEach(button => {
+        button.addEventListener('click', () => {
+            const buttonText = button.textContent;
+            clickedButtons += buttonText; // Append the clicked button text to the variable
+            resultBox.textContent = Number(clickedButtons); // Set the text content of result box
+            console.log(clickedButtons); // Log the clicked buttons string
+        });
+    });
+    //End Numbers display function
+}  
