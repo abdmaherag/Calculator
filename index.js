@@ -1,130 +1,74 @@
-add = (number1, number2) => {
-    let addObj = {
-        number1,
-        addition: "+",
-        number2,
-        result: number1 + number2,
+document.addEventListener("DOMContentLoaded", function () {
+    const resultDisplay = document.getElementById("result");
+    const buttons = document.querySelectorAll("#buttons button");
+    let currentInput = "";
+    let previousInput = "";
+    let operation = null;
+  
+    function clear() {
+      currentInput = "";
+      previousInput = "";
+      operation = null;
+      updateDisplay();
     }
-    return addObj['result'] 
-}
-
-substract = (number1, number2) => {
-    let substractObj = {
-        number1,
-        substraction : "-",
-        number2,
-        result: number1 - number2
+  
+    function updateDisplay() {
+      resultDisplay.textContent = currentInput || "";
     }
-    return substractObj['result']
-}
-
-multiply = (number1, number2) => {
-    multiplyObj = {
-        number1,
-        multiplication: "x",
-        number2,
-        result: number1 * number2
+  
+    function calculate() {
+      let result;
+      const current = parseFloat(currentInput);
+      const previous = parseFloat(previousInput);
+      if (isNaN(current) || isNaN(previous)) return;
+      switch (operation) {
+        case "+":
+          result = previous + current;
+          break;
+        case "-":
+          result = previous - current;
+          break;
+        case "*":
+          result = previous * current;
+          break;
+        case "/":
+          result = previous / current;
+          break;
+        default:
+          return;
+      }
+      currentInput = result.toString();
+      previousInput = "";
+      operation = null;
+      updateDisplay();
     }
-    return multiplyObj['result']
-}
-
-divide = (number1, number2) =>{
-    divideObj = {
-        number1,
-        division: "÷",
-        number2,
-        result: number1 / number2
-    }
-    return divideObj['result']
-}
-
-let clickedButtons = ''; 
-const resultBox = document.querySelector('#result'); // Select result box outside the loop
-
-calculate = () => {
-    //Top buttons functions
-    const numbers = document.querySelectorAll('.numbers, .dot');
-    const acButton = document.querySelector('.ac');
-    acButton.addEventListener('click', () => {
-        clickedButtons = '';
-        resultBox.textContent = clickedButtons;
-    });
-    
-    const postiveSlashNegativeButton = document.querySelector('.top-calc:nth-child(2)');
-    postiveSlashNegativeButton.addEventListener('click', () =>{
-        clickedButtons = Number(clickedButtons) *-1
-        resultBox.textContent = clickedButtons
-    })
-    
-    const percentButton = document.querySelector('.top-calc:nth-child(3');
-    percentButton.addEventListener('click', () =>{
-        clickedButtons= Number(clickedButtons)/100;
-        resultBox.textContent = clickedButtons
-    })
-    //end of top buttons functions
-    
-    //Numbers display function
-    numbers.forEach(button => {
-        button.addEventListener('click', () => {
-            const buttonText = button.textContent;
-            clickedButtons += buttonText; // Append the clicked button text to the variable
-            resultBox.textContent = Number(clickedButtons); // Set the text content of result box
-        });
-    });
-    //End Numbers display function
-
-    let adds = false;
-    let subs = false;
-    let mults = false;
-    let divs = false;
-
-    const addButton = document.querySelector('.add');
-    addButton.addEventListener('click', () => {
-    adds = true;
-    num1 = Number(clickedButtons);
-        clickedButtons = '';
-    });
-
-    const substractButton = document.querySelector('.substract')
-    substractButton.addEventListener('click', () => {
-    subs = true;
-    num1 = Number(clickedButtons);
-    clickedButtons = '';
-    });
-
-    const multiplyButton = document.querySelector('.mult')
-    multiplyButton.addEventListener('click', () => {
-    mults = true;
-    num1 = Number(clickedButtons);
-    clickedButtons = '';
-    });
-    
-    const divideButton = document.querySelector ('.divs')
-    divideButton.addEventListener('click', () =>{
-        divs = true;
-        num1 = Number(clickedButtons);
-        clickedButtons = '';
-    })
-
-    const equalsButton = document.querySelector('.eq');
-    equalsButton.addEventListener('click', () => {
-        const num2 = Number(clickedButtons);
-        if (adds) {
-            resultBox.textContent = add(num1, num2);
-        } else if (subs) {
-            resultBox.textContent = substract(num1, num2);
+  
+    buttons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const value = this.textContent;
+        if (value === "AC") {
+          clear();
+        } else if (value === "=") {
+          calculate();
+        } else if (value === "+/-") {
+          currentInput = (parseFloat(currentInput) * -1).toString();
+          updateDisplay();
+        } else if (value === "%") {
+          currentInput = (parseFloat(currentInput) / 100).toString();
+          updateDisplay();
+        } else if (["+", "-", "*", "/"].includes(value)) {
+          if (currentInput && previousInput) {
+            calculate();
+          }
+          operation = value;
+          previousInput = currentInput;
+          currentInput = "";
+          updateDisplay();
+        } else {
+          currentInput += value;
+          updateDisplay();
         }
-        else if (mults){
-            resultBox.textContent = multiply(num1, num2)
-        }
-        else if (divs){
-            resultBox.textContent = divide(num1, num2)
-        }
-        // Reset adds and subs after calculation
-        adds = false;
-        subs = false;
-        mults = false;
-        divs = false;
+      });
     });
-}
-calculate()
+  });
+  
