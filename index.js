@@ -8,8 +8,6 @@ add = (number1, number2) => {
     return addObj['result'] 
 }
 
-console.log(add(2,3));
-
 substract = (number1, number2) => {
     let substractObj = {
         number1,
@@ -19,7 +17,6 @@ substract = (number1, number2) => {
     }
     return substractObj['result']
 }
-console.log(substract(53,23));
 
 multiply = (number1, number2) => {
     multiplyObj = {
@@ -31,8 +28,6 @@ multiply = (number1, number2) => {
     return multiplyObj['result']
 }
 
-console.log(multiply(3, 3));
-
 divide = (number1, number2) =>{
     divideObj = {
         number1,
@@ -42,13 +37,6 @@ divide = (number1, number2) =>{
     }
     return divideObj['result']
 }
-console.log(divide(3, 3));
-
-operate = (operator, number1, number2) => {
-    operator(number1,number2)
-}
-console.log(divide(5,5));
-
 
 let clickedButtons = ''; 
 const resultBox = document.querySelector('#result'); // Select result box outside the loop
@@ -60,13 +48,11 @@ calculate = () => {
     acButton.addEventListener('click', () => {
         clickedButtons = '';
         resultBox.textContent = clickedButtons;
-        console.log(clickedButtons);
     });
     
     const postiveSlashNegativeButton = document.querySelector('.top-calc:nth-child(2)');
     postiveSlashNegativeButton.addEventListener('click', () =>{
         clickedButtons = Number(clickedButtons) *-1
-        console.log(clickedButtons);
         resultBox.textContent = clickedButtons
     })
     
@@ -83,10 +69,10 @@ calculate = () => {
             const buttonText = button.textContent;
             clickedButtons += buttonText; // Append the clicked button text to the variable
             resultBox.textContent = Number(clickedButtons); // Set the text content of result box
-            console.log(clickedButtons); // Log the clicked buttons string
         });
     });
     //End Numbers display function
+
     let adds = false;
     let subs = false;
     let mults = false;
